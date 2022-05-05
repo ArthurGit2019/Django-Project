@@ -1,0 +1,158 @@
+{% extends 'coronavirus/index.html'%} {% load static %} {% block content %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-dark mb-4">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white" href="#">Latest</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarTogglerDemo02"
+      aria-controls="navbarTogglerDemo02"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link active text-white"
+            aria-current="page"
+            href="covid.html"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="stories.html">Stories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="covid_predict.html"
+            >Confirmed Cases Prediction</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="deaths_predict.html"
+            >Deaths Prediction</a
+          >
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link text-white" href="deaths_confirmed.html"
+            >Deaths Based on Confirmed Cases</a
+          >
+        </li> -->
+      </ul>
+      <form class="d-flex" method="GET">
+        <input
+          class="form-control me-2"
+          type="search"
+          name="name"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <button class="btn btn-outline-light" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<div class="container p-4" style="margin-top: 90px">
+  <div class="row p-2 align-items-center align-content-center">
+    <div class="col ms-5">
+      <h3 class="pb-2">Get Top Stories</h3>
+      <a class="btn btn-primary" href="https://www.vox.com/" role="button"
+        >See More</a
+      >
+    </div>
+    <div class="col">
+      <img
+        src="https://cdn.vox-cdn.com/thumbor/LFOJKLQi1yhZ_-V1tylfpAf-O7g=/0x0:4494x3000/1200x800/filters:focal(1778x1023:2496x1741)/cdn.vox-cdn.com/uploads/chorus_image/image/70335915/GettyImages_1353931588.0.jpg"
+        alt=""
+        height="550"
+      />
+    </div>
+  </div>
+</div>
+
+<div
+  class="row p-5 bg-warning align-items-center align-content-center"
+  style="margin-top: 100px"
+>
+  <div class="col p-5">
+    <img
+      src="https://e3.365dm.com/21/12/2048x1152/skynews-look-ahead-trump-queen_5613981.jpg"
+      alt=""
+      height="400"
+    />
+  </div>
+  <div class="col ms-5">
+    <h2 class="pb-2">Headlines and Breaking News</h2>
+    <a
+      class="btn btn-secondary btn-lg px-5 py-2"
+      href="https://news.sky.com/"
+      role="button"
+      >Visit Us</a
+    >
+  </div>
+</div>
+
+<div class="row" style="margin-top: 120px">
+  <div class="text-center container">
+    <br />
+    <h2 class="text-center text-danger">GET TOP STORIES 2022</h2>
+    <br />
+    <form method="GET">
+      <input
+        type="text"
+        name="name"
+        placeholder="Search..."
+        class="text-center"
+      />
+      <button type="submit" class="btn-success btn-sm">SEARCH TOP NEWS</button>
+    </form>
+  </div>
+</div>
+
+<div class="container pt-5">
+  <div class="row">
+    {% for story in top_stories %}
+    <div class="col-md-4 col-sm-6 col-lg-3">
+      <div class="card">
+        <img
+          class="card-img-top"
+          src="{{ story.media }}"
+          alt="Card image cap"
+          height="200"
+        />
+        <div class="card-body text-center">
+          <p class="card-title">{{ story.title }}</p>
+          <hr />
+          <p class="card-text">{{ story.summary|truncatewords:9 }}...</p>
+          <a href="{{story.link}}"
+            ><input
+              type="submit"
+              value="Visit Us"
+              class="btn btn-primary btn-sm"
+              type="button"
+          /></a>
+          <a href="/articles/{{story.id}}" class="ps-4"
+            ><input
+              type="submit"
+              value="Learn More"
+              class="btn btn-info btn-sm"
+              type="button"
+          /></a>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted"
+            >Published: {{ story.published_date }}</small
+          >
+        </div>
+      </div>
+      <br /><br /><br />
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

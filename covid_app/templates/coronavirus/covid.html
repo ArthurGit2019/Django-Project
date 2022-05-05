@@ -1,0 +1,73 @@
+{% extends 'coronavirus/index.html'%}
+{% load static %}
+{% block content %} 
+
+<nav class="navbar navbar-expand-lg navbar-light bg-dark mb-4">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white" href="#">Latest</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active text-white" aria-current="page" href="covid.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="stories.html">Stories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="covid_predict.html">Confirmed Cases Prediction</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="deaths_predict.html">Deaths Prediction</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link text-white" href="deaths_confirmed.html">Deaths Based on Confirmed Cases</a>
+        </li> -->
+      </ul>
+      <form class="d-flex" method="GET">
+        <input class="form-control me-2" type="search" name="name" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-light" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<div class="row">
+  <img class="position-relative" src="https://www.paho.org/sites/default/files/styles/max_1500x1500/public/2020-03/blue-covid-banner.jpg?itok=N2g8afH3" alt="" height="700vh" />
+  <h1 class="text-white position-absolute" style="margin-top: 250px; margin-left: 100px;">Coronavirus Updates</h1>
+  <p class="text-white position-absolute" style="margin-top: 310px; margin-left: 100px;">Get the latest news from the city and county</p>
+  <a class="btn btn-success position-absolute" href="https://www.cdc.gov/" role="button" style="width: 25vh; margin-top: 370px; margin-left: 115px;">Learn More</a>
+  <!-- <h1 class="position-absolute top-50 start-50 text-center align-middle" style="background-image: url(https://www.paho.org/sites/default/files/styles/max_1500x1500/public/2020-03/blue-covid-banner.jpg?itok=N2g8afH3); background-size: cover; height: 85vh;">Coronavirus Updates</h1> -->
+</div>
+<div class = "container">
+    
+    <div class = "text-center container">
+      <br>
+      <h2 class = "text-center">Search for covid data</h2> 
+      <br>
+      <form method="GET">
+        <input type = "text" name = "name" placeholder = "Search by date..." class = "text-center">
+        <button type = "submit" class = "btn-danger btn-sm">SEARCH COVID DATA</button>
+      </form> 
+    </div> 
+    <br><br>
+    <div class="row">
+      <!-- {% for covid in overall_covid_data %}
+        <p>{{covid.report_date}}</p>
+        <p>{{covid.confirmed}}</p>
+        <p>{{covid.confirmed_diff}}</p>
+        <p>{{covid.deaths}}</p>
+        <p>{{covid.deaths_diff}}</p>
+      {% endfor %} -->
+      {% if scatter_chart %}
+        <img src="data:image/png;base64, {{scatter_chart|safe}}" />
+      {% endif %}
+
+      {% if line_chart %}
+        <img src="data:image/png;base64, {{line_chart|safe}}" />
+      {% endif %}
+    </div>
+  </div>  
+{% endblock %}

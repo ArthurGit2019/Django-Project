@@ -1,0 +1,28 @@
+{% extends 'coronavirus/index.html' %}
+{% load static %}
+{% block content %}
+
+<div class = "container"> 
+    <br><br>
+    <div class="row"> 
+        <div class="col-md-5">
+          <br>
+          <img class="img-fluid" src="{{ article.media }}" alt="" style = "width: 90%;">
+          <br><br>
+          <h3 class="card-title text-center ">{{ article.title }}</h3>
+        </div> 
+        <div class="col-md-7 shadow-lg p-3 mb-5 bg-white rounded">
+          <h1 class="my-3">Article Summary</h1>
+          <p class = "lead">{{ article.summary }}</p>
+          <h1 class="my-3">Article Details</h1>
+          <ul>
+            <li>Topic: {{ article.topic }}</li>
+            <li>Country: {{ article.country }}</li>
+            <li>Rank: {{ article.rank }}</li>
+            <li>Score: {{ article.score }}</li>
+          </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

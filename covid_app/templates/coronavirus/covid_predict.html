@@ -1,0 +1,135 @@
+{% extends 'coronavirus/index.html'%} {% load static %} {% block content %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-dark mb-4">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white" href="#">Latest</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarTogglerDemo02"
+      aria-controls="navbarTogglerDemo02"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link active text-white"
+            aria-current="page"
+            href="covid.html"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="stories.html">Stories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="covid_predict.html"
+            >Confirmed Cases Prediction</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="deaths_predict.html"
+            >Deaths Prediction</a
+          >
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link text-white" href="deaths_confirmed.html"
+            >Deaths Based on Confirmed Cases</a
+          >
+        </li> -->
+      </ul>
+      <form class="d-flex" method="GET">
+        <input
+          class="form-control me-2"
+          type="search"
+          name="name"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <button class="btn btn-outline-light" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="card-group">
+    <div class="card text-white bg-primary">
+      <div class="card-body">
+        <h5 class="card-title">Linear Regression</h5>
+        <h6 class="card-subtitle mb-2 text-muted">On Training Set</h6>
+        <p class="card-text">RMSE: {{ lin_rmse }}</p>
+        <p class="card-text">MAE: {{ lin_mae }}</p>
+        <p class="card-text">RMSE Mean: {{ lin_rmse_mean }}</p>
+        <p class="card-text">RMSE Standard Deviation: {{ lin_rmse_std }}</p>
+        <!-- <a href="#" class="card-link">Card link</a> -->
+        <!-- <a href="#" class="card-link">Another link</a> -->
+      </div>
+    </div>
+    <div class="card text-white bg-danger">
+      <div class="card-body">
+        <h5 class="card-title">Decision Tree Regression</h5>
+        <h6 class="card-subtitle mb-2 text-muted">On Training Set</h6>
+        <p class="card-text">RMSE: {{ tree_rmse }}</p>
+        <p class="card-text">RMSE Mean: {{ tree_rmse_mean }}</p>
+        <p class="card-text">RMSE Standard Deviation: {{ tree_rmse_std }}</p>
+        <!-- <a href="#" class="card-link">Card link</a> -->
+        <!-- <a href="#" class="card-link">Another link</a> -->
+      </div>
+    </div>
+    <div class="card border-success">
+      <div class="card-body text-success">
+        <h5 class="card-title">Random Forest Regressor</h5>
+        <h6 class="card-subtitle mb-2 text-muted">On Training Set</h6>
+        <p class="card-text">RMSE: {{ forest_rmse }}</p>
+        <p class="card-text">RMSE Mean: {{ forest_rmse_mean }}</p>
+        <p class="card-text">RMSE Standard Deviation: {{ forest_rmse_std }}</p>
+        <!-- <a href="#" class="card-link">Card link</a> -->
+        <!-- <a href="#" class="card-link">Another link</a> -->
+      </div>
+    </div>
+  </div>
+  <div class="card-group mt-5">
+    <div class="card border-primary">
+      <div class="card-body text-primary">
+        <h5 class="card-title">Linear Regression</h5>
+        <h6 class="card-subtitle mb-2 text-muted">On Test Set</h6>
+        <p class="card-text">RMSE: {{ test_lin_rmse }}</p>
+        <p class="card-text">MAE: {{ test_lin_mae }}</p>
+        <p class="card-text">RMSE Mean: {{ test_lin_rmse_mean }}</p>
+        <p class="card-text">RMSE Standard Deviation: {{ test_lin_rmse_std }}</p>
+        <!-- <a href="#" class="card-link">Card link</a> -->
+        <!-- <a href="#" class="card-link">Another link</a> -->
+      </div>
+    </div>
+    <div class="card border-danger">
+      <div class="card-body text-danger">
+        <h5 class="card-title">Decision Tree Regression</h5>
+        <h6 class="card-subtitle mb-2 text-muted">On Test Set</h6>
+        <p class="card-text">RMSE: {{ test_tree_rmse }}</p>
+        <p class="card-text">RMSE Mean: {{ test_tree_rmse_mean }}</p>
+        <p class="card-text">RMSE Standard Deviation: {{ test_tree_rmse_std }}</p>
+        <!-- <a href="#" class="card-link">Card link</a> -->
+        <!-- <a href="#" class="card-link">Another link</a> -->
+      </div>
+    </div>
+    <div class="card border-secondary">
+      <div class="card-body text-secondary">
+        <h5 class="card-title">Random Forest Regressor</h5>
+        <h6 class="card-subtitle mb-2 text-muted">On Test Set</h6>
+        <p class="card-text">RMSE: {{ test_forest_rmse }}</p>
+        <p class="card-text">RMSE Mean: {{ test_forest_rmse_mean }}</p>
+        <p class="card-text">RMSE Standard Deviation: {{ test_forest_rmse_std }}</p>
+        <!-- <a href="#" class="card-link">Card link</a> -->
+        <!-- <a href="#" class="card-link">Another link</a> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
